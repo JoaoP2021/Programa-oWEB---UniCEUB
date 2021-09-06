@@ -1,8 +1,7 @@
-package Atividade02;
+package AtividadeAvaliativa;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletAgenda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -26,26 +23,25 @@ public class ServletAgenda extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-@Override
-public void init() throws ServletException {
-	super.init();
-	log("ServletDataHora " + format.format(new Date()));
-}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		PrintWriter saida = response.getWriter();
+		saida.write("<HTML><BODY>");
+		saida.write("Nome: "+ request.getParameter("nome") + " <BR> ");
+		saida.write("Telefone: "+ request.getParameter("telefone") + " <BR> ");
+		saida.write("Data de nascimento: "+ request.getParameter("dataNascimento") + " <BR> ");
+		saida.write("</HTML></BODY>");
+		saida.close();
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 
